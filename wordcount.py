@@ -49,6 +49,37 @@ import sys
 
 ###
 
+def word_count_dict(filename):
+    word_count = {}
+    with open(filename, 'r') as file:
+        for line in file:
+            words = line.lower().split()
+            for word in words: 
+                if word in word_count: 
+                    word_count[word] += 1
+                else:
+                    word_count[word] = 1
+    return word_count
+
+def print_words(filename):
+    wordCount = word_count_dict(filename)
+    for item in wordCount:
+        print(item, wordCount[item])
+
+def wordCounter(tup):
+    count = tup[1]
+    return count
+
+def print_top(filename):
+    wordCount = word_count_dict(filename)
+    topWords = sorted(wordCount.items(), key = wordCounter, reverse = True)
+    for topWord in topWords[:20]:
+        word = topWord[0]
+        count = topWord[1]
+        print(word, count)
+
+
+
 # This basic command line argument parsing code is provided and
 # calls the print_words() and print_top() functions which you must define.
 
